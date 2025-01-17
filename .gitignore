@@ -1,0 +1,5 @@
+# CMake Properties
+cmake-build-*
+
+# CLion Properties
+.idea
