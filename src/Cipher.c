@@ -10,10 +10,8 @@ void encrypt(unsigned char *res, const unsigned char *msg, const int length)
 {
     for (int i = 0; i < length; i += 1)
     {
-        const unsigned char t = msg[i] ^ vector;
-
-        res[i] = t;
-        updateVec(t);
+        res[i] = msg[i] ^ vector;
+        updateVec(msg[i]);
     }
 }
 
@@ -24,7 +22,7 @@ void decrypt(unsigned char *res, const unsigned char *msg, const int length)
         const unsigned char t = msg[i] ^ vector;
 
         res[i] = t;
-        updateVec(msg[i]);
+        updateVec(t);
     }
 }
 
@@ -35,9 +33,6 @@ void setVector(unsigned char val)
 
 static void updateVec(const unsigned char var)
 {
-    if (var == 0)
-        return;
-
     unsigned char res = 0;
 
     if ((var & 0x01) == 0x01)
@@ -57,7 +52,7 @@ static void updateVec(const unsigned char var)
     if ((var & 0x80) == 0x80)
         res ^= shift(vector, 7);
 
-    vector = res;
+    vector = res ^ 0x72; // 114
 }
 
 static unsigned char shift(const unsigned char src, const int length)

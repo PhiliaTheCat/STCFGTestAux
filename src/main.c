@@ -9,7 +9,7 @@ int main(const int argc, const char **argv)
 {
     if (argc != 6)
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -17,7 +17,7 @@ int main(const int argc, const char **argv)
 
     if (!(strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "-d") == 0))
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -25,7 +25,7 @@ int main(const int argc, const char **argv)
 
     if (strcmp(argv[2], "-v") != 0)
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -33,7 +33,7 @@ int main(const int argc, const char **argv)
 
     if (strlen(argv[3]) != 2)
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -41,7 +41,7 @@ int main(const int argc, const char **argv)
 
     if (!(isHex(argv[3][0]) && isHex(argv[3][1])))
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -51,7 +51,7 @@ int main(const int argc, const char **argv)
 
     if (strcmp(argv[4], "-m") != 0)
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -60,7 +60,7 @@ int main(const int argc, const char **argv)
     const int inputLength = strlen(argv[5]);
     if (inputLength % 2 != 0)
     {
-        printf("Error: invalid invokation!\n"
+        printf("Error: invalid invocation!\n"
             "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
         return -1;
@@ -70,7 +70,7 @@ int main(const int argc, const char **argv)
     {
         if (!isHex(argv[5][i]))
         {
-            printf("Error: invalid invokation!\n"
+            printf("Error: invalid invocation!\n"
                 "Usage: coder <-e | -d> -v <hexadecimal initial vector> -m <hexadecimal message>\n");
 
             return -1;
@@ -87,8 +87,8 @@ int main(const int argc, const char **argv)
         decrypt(res, msg, inputLength / 2);
     output(res, inputLength / 2);
 
-    free(res);
-    free(msg);
+    msg = NULL;
+    res = NULL;
 
     return 0;
 }
